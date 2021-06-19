@@ -19,6 +19,7 @@ public:
 private:
     int mAngle;
     int mLength;
+    int mScalingSpeed;
     int mSpeed;
     sf::Vector2f mPos;
     sf::RectangleShape mLine;

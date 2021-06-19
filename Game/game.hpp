@@ -21,7 +21,7 @@ private:
     sf::Vector2u mwindowSize;
     sf::RenderWindow mWindow;
     // Time after which a line is made
-    float mLineMakingDuration = 0.15f;
+    float mLineMakingDuration = 0.05f;
     float mCurrentDuration = 0.0f;
     std::vector<Line *> mCurrLines;
 };
