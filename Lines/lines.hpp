@@ -17,9 +17,10 @@ public:
     sf::RectangleShape getLine();
 
 private:
-    int mAngle;
+    const int mAngle;
     int mLength;
-    int mScalingSpeed;
+    const float mScalingSpeed;
+    const float mAcceleration;
     int mSpeed;
     sf::Vector2f mPos;
     sf::RectangleShape mLine;
