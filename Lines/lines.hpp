@@ -10,15 +10,18 @@ using Random = effolkronium::random_static;
 class Line
 {
 public:
-    Line();
+    Line(const sf::Vector2u & windowSize);
     void update(float dt);
     ~Line();
+    sf::Vector2f getPos();
+    sf::RectangleShape getLine();
 
 private:
-    int m_angle;
-    int m_length;
-    int m_speed;
-    sf::Vector2f pos;
+    int mAngle;
+    int mLength;
+    int mSpeed;
+    sf::Vector2f mPos;
+    sf::RectangleShape mLine;
 };
 
 #endif

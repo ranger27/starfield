@@ -1,6 +1,7 @@
-# executable
+.vscode
 main
 a.out
 output
-
+practice
+practice.cpp
 *.o

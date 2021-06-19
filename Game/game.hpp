@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Lines/lines.hpp"
+#include <vector>
 
 class Game
 {
@@ -13,12 +14,16 @@ public:
 
 private:
     void processEvents();
-    void update();
+    void update(float dt);
     void render();
 
 private:
     sf::Vector2u mwindowSize;
     sf::RenderWindow mWindow;
+    // Time after which a line is made
+    float mLineMakingDuration = 0.15f;
+    float mCurrentDuration = 0.0f;
+    std::vector<Line *> mCurrLines;
 };
 
 #endif

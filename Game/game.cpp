@@ -8,10 +8,13 @@ Game::~Game() {}
 
 void Game::run()
 {
+    sf::Clock clock;
+    mWindow.setFramerateLimit(60);
     while (mWindow.isOpen())
     {
         processEvents();
-        update();
+        sf::Time dt = clock.restart();
+        update(dt.asSeconds());
         render();
     }
 }
@@ -25,10 +28,38 @@ void Game::processEvents()
             mWindow.close();
     }
 };
-void Game::update() {}
+void Game::update(float dt)
+{
+    mCurrentDuration += dt;
+    if (mCurrentDuration >= mLineMakingDuration)
+    {
+        mCurrentDuration = 0.0f;
+        Line *newLine = new Line(mwindowSize);
+        mCurrLines.push_back(newLine);
+    }
+    for (auto i = mCurrLines.begin(); i != mCurrLines.end(); i++)
+    {
+
+        sf::Vector2f currLinePos = (*i)->getPos();
+        if (currLinePos.x > mwindowSize.x || currLinePos.x < 0 || currLinePos.y < 0 || currLinePos.y > mwindowSize.y)
+        {
+            delete (*i);
+            mCurrLines.erase(i);
+            continue;
+        }
+        else
+        {
+            (*i)->update(dt);
+        }
+    }
+}
+
 void Game::render()
 {
-    mWindow.clear(sf::Color::Green);
-    // mWindow.draw();
+    mWindow.clear(sf::Color::Black);
+    for (auto i = mCurrLines.begin(); i != mCurrLines.end(); i++)
+    {
+        mWindow.draw((*i)->getLine());
+    }
     mWindow.display();
 };
